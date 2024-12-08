@@ -1,10 +1,8 @@
 #!/bin/bash
 
-
 #variables storing current date and path to log file
 DATE=$(date +%F)
 LOG="/var/log/monitor_server_health_$DATE.log"
-
 {	echo "			***Health report - $DATE***"
 
 	echo "			***Gathering I|O statistics***"
@@ -30,6 +28,5 @@ LOG="/var/log/monitor_server_health_$DATE.log"
 	echo "			***Server uptime***"
 	uptime		#uptime command is used to find for how long the system has been active.
 	echo ""
-
 } | tee "$LOG"
 echo "Report saved in path: $LOG"
