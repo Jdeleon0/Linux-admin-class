@@ -1,3 +1,3 @@
 # Linux-admin-class
 .sh Scripts made for linux admin class 
-(Not serious scripts)
+(Scripts might not be optimal for all Linux distros).
