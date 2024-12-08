@@ -1,8 +1,9 @@
 #!/bin/bash
 
 #Variables
-DirPath="/etc/"  #"/var/log"  		#variable holding path to directory where its gonna make a hash from.
-OldHash="/tmp/dir_old_hash.txt"		#variable holding path to directory temp and file where hash will be stored. 
+DirPath="/etc/ssh"  #"/var/log"  		#variable holding path to directory where its gonna make a hash from.
+OldHash="/tmp/dir_old_hash.txt"	#variable holding path to directory temp and file where hash will be stored.
+ChangesFound="/tmp/filehash_changes_found.txt" 
 CurrentHash=$(find "$DirPath" -exec stat --format='%n %s %y' {} \; | sha256sum | awk '{print $1}') # using Sha256sum to get the DIR hash.
 
 if [ ! -f "$OldHash" ];then						#If condition to verify that file dir_old_hash.txt exist-
@@ -19,10 +20,8 @@ if [ "$CurrentHash" == "$SavedHash" ];then		#IF-Else condition to verify if the 
 	echo "$SavedHash"				#and stores the new hash in the file.
 else
 	echo "Changes detected in $DirPath!!"
-	echo "saving current hash as previous hash"
+	echo "saving hash for further inspection"
 	echo "Old = $SavedHash"
 	echo "New = $CurrentHash"
-	echo "$CurrentHash" > "$OldHash"
+	echo "$CurrentHash" > "$ChangesFound"
 fi
-
-
