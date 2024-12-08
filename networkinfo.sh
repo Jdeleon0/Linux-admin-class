@@ -32,4 +32,4 @@ echo "------------------------------------------------";
 } |tee "$netlog"  #tee command takes all information and saves it into the path given to the netlog variable.
 
 #informs the user with a comment where the file is stored.
-echo "Current network data saved in path $netlog"
+echo "Current network data stored in path $netlog"
